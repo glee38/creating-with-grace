@@ -1,5 +1,26 @@
 Goal: Build an art blog/tutorial site
 
+Gems:
+- Devise (integerate omniauth within)
+- Omniauth
+- Pundit
+- Carrierwave
+
+Remember to include:
+- Nested resource routes
+
+- Partials
+
+- ActiveRecord class level scope methods
+  - example: Reports make for a good usage of class scopes, such as "Most Valuable Cart by Customer" where the code would implement a `Cart.most_valuable` and `Cart.by_customer` which could be combined as `Cart.most_valuable.by_customer(@customer)`
+
+- Forms should correctly display validation errors. 
+  - Your fields should be enclosed within a `fields_with_errors` class and error messages describing the validation failures must be present within the view.
+
+- Must include a nested form that writes to an associated model through a custom attribute writer
+  - category_attributes=(category_hash)
+  - post[category_attributes][0][name]
+
 Models:
 
 - Users [admin, moderator, user] x
@@ -78,6 +99,34 @@ Associations:
 - A video belongs_to :post
 - A video belongs_to :user
 
-## PROFILE
+## PROFILES
 - A profile belongs_to :user
+
+Tables:
+
+** USERS **
+- Profile details
+  - Name (first name only)
+- Account details
+  - Username
+  - E-mail
+  - Password
+  - Confirm password
+
+** POSTS **
+- Title
+- Content
+- Type
+  - tutorial
+  - process
+  - review
+  - general art
+- User_id
+
+** COMMENTS **
+- Content
+- Post_id
+- User_id
+
+
 
