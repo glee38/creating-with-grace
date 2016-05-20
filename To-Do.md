@@ -30,6 +30,8 @@ Models:
 - Post Categories x
 - Images x
 - Products x
+- Product Details x
+- Brands x
 - Reviews x
 - Videos x
 - Profile x
@@ -66,7 +68,7 @@ Associations:
 - A post has_many :categories, through: :post_categories (post_categories join model)
 
 - A post has_many :comments
-- A post has_many :commentors, through: :comments, :source => :user
+- A post has_many :commenters, through: :comments, :source => :user
 
 - A post has_many :images
 - A post has_many :image_uploaders, through: :images, :source => :user
@@ -91,6 +93,16 @@ Associations:
 - A product has_many :reviews
 - A product has_many :reviewers, through: :reviews, :source => :user
 
+- A product has_many :product_details
+
+- A product belongs_to :brand
+
+## PRODUCT_DETAILS
+- A product_detail belongs_to: :product
+
+## BRAND
+- A brand has_many :products
+
 ## REVIEWS (acts as a join model for products and users)
 - A review belongs_to :product
 - A review belongs_to :user
@@ -105,13 +117,10 @@ Associations:
 Tables:
 
 ** USERS **
-- Profile details
-  - Name (first name only)
-- Account details
-  - Username
-  - E-mail
-  - Password
-  - Confirm password
+[Account details]
+- Username
+- E-mail
+- Password
 
 ** POSTS **
 - Title
@@ -126,6 +135,47 @@ Tables:
 ** COMMENTS **
 - Content
 - Post_id
+- User_id
+
+** CATEGORIES **
+- Name
+
+** POST_CATEGORIES **
+- Category_id
+- Post_id
+
+** IMAGES **
+- User_id
+- Post_id
+- Title
+
+** PRODUCTS **
+- Name
+- Cost
+- Summary
+- Brand_id
+
+** BRANDS **
+- Name
+
+** PRODUCT_DETAILS **
+- Content
+- Product_id
+
+** REVIEWS **
+- Content
+- User_id
+- Product_id
+
+** VIDEOS **
+- Title
+- User_id
+- Post_id
+
+** PROFILES **
+[Profile details]
+- Name (first name only)
+- Bio
 - User_id
 
 
