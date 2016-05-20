@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :profiles
+  resources :reviews
+  resources :brands
   resources :products
   resources :categories
   resources :comments
