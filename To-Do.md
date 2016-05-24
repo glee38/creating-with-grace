@@ -144,10 +144,11 @@ Tables:
 - Category_id
 - Post_id
 
-** IMAGES **
+** RELATED_IMAGES **
 - User_id
 - Post_id
-- Title
+- Caption
+- Image (carrierwave)
 
 ** PRODUCTS **
 - Name
