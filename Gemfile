@@ -25,6 +25,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'twitter-bootswatch-rails', '~> 3.3.4'
 
+# gem to use 'less' in bootstrap
+gem 'therubyracer'
+
 gem 'devise'
 gem 'omniauth'
 gem 'pundit'
