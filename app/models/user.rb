@@ -6,6 +6,8 @@ class User < ActiveRecord::Base
 
   enum role: [:admin, :moderator, :member]
 
+  after_initialize :set_default_role, :if => :new_record?
+
   has_many :posts # admin only
   has_many :comments
   has_many :commented_posts, through: :comments, :source => :post
@@ -19,5 +21,10 @@ class User < ActiveRecord::Base
   # validates_presence_of   :avatar
   # validates_integrity_of  :avatar
   # validates_processing_of :avatar
+
+  private
+  def set_default_role
+    self.role ||= :member
+  end
 
 end
