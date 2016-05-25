@@ -15,6 +15,7 @@ class User < ActiveRecord::Base
   has_many :uploaded_images, :source => :image
   has_one :profile # member only
 
+  mount_uploader :avatar, AvatarUploader
   # validates_presence_of   :avatar
   # validates_integrity_of  :avatar
   # validates_processing_of :avatar
