@@ -12,6 +12,9 @@
  *
  *
  *= require_self
- *= require journal/loader
- *= require journal/bootswatch
+ *= require magazine/animate
+ *= require magazine/bootstrap
+ *= require magazine/flexslider
+ *= require magazine/icomoon
+ *= require magazine/style
  */

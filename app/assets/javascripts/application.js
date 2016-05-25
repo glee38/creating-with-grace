@@ -12,7 +12,11 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
-//= require journal/loader
-//= require journal/bootswatch
+//= require magazine/bootstrap.min
+//= require magazine/jquery.easing.1.3
+//= require magazine/jquery.min
+//= require magazine/jquery.waypoints.min
+//= require magazine/main
+//= require magazine/modernizr-2.6.2.min
+//= require magazine/respond.min
 
