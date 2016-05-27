@@ -29,11 +29,13 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
   </head>
+  <% if user_signed_in? && current_user.admin? %>
+    <%= render "layouts/adminnav" %>
+  <% end %>
+  <%= render "layouts/messages" %>
   <%= render "layouts/sidenav" %>
   <header id="fh5co-header">
-      
     <div class="container-fluid">
-
       <div class="row">
         <a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle"><i></i></a>
         <ul class="fh5co-social">
@@ -48,12 +50,10 @@
         <div class="col-lg-12 col-md-12 text-center">
           <h1 id="fh5co-logo"><%=link_to "Create with Grace", root_path%></h1>
         </div>
-
       </div>
-    
     </div>
-
   </header>
+
   <!-- END #fh5co-header -->
 <body>
 

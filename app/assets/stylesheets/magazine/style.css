@@ -208,6 +208,7 @@ p {
 }
 
 #fh5co-header {
+  position: relative;
   padding: 3em 3em;
   float: left;
   width: 100%;
