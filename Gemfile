@@ -33,6 +33,9 @@ gem 'omniauth'
 gem 'pundit'
 gem 'carrierwave'
 
+# gem to create wizard forms
+gem 'wicked'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
