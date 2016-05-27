@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :products
   resources :categories
   resources :comments
+  resources :user_steps
   devise_for :users
   resources :posts
   root to: 'welcome#index'
