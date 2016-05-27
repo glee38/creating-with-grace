@@ -5,8 +5,8 @@ Rails.application.routes.draw do
   resources :products
   resources :categories
   resources :comments
-  resources :user_steps
-  devise_for :users
+  resources :registration_steps
+  devise_for :users, :controllers => { :registrations => "registrations" }
   resources :posts
   root to: 'welcome#index'
 

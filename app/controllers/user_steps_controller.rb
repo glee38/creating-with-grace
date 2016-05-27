@@ -1,2 +1,0 @@
-class UserStepsController < ApplicationController
-end
