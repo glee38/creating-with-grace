@@ -1,5 +1,5 @@
 class Post < ActiveRecord::Base
-  belongs_to a :user # admin only
+  belongs_to :user # admin only
   has_many :videos # admin only
   has_many :post_categories
   has_many :categories, through: :post_categories

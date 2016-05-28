@@ -1,0 +1,22 @@
+<h1>Create New Post</h1>
+<%= form_for @post do |f| %>
+  
+  <p>
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+  </p>
+  
+  <p>
+    <%= f.label :content %>
+    <%= f.text_area :content %>
+  </p>
+
+  <p>
+    <%= f.label :type %>
+    <%= f.text_field :type %>
+  </p>
+
+  <p>
+    <%= collection_check_boxes(:post, :post_category_ids, Category.all, :id, :name) %>
+    <%= f.text_field :title %>
+  </p>
