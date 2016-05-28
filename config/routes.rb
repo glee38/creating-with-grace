@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :comments
   resources :registration_steps
   devise_for :users, :controllers => { :registrations => "registrations" }
+                     :controllers => { :omniauth_callbacks => "omniauth_callbacks" }
   resources :posts
   root to: 'welcome#index'
 

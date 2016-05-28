@@ -29,7 +29,7 @@ gem 'twitter-bootswatch-rails', '~> 3.3.4'
 gem 'therubyracer'
 
 gem 'devise'
-gem 'omniauth'
+gem 'omniauth-facebook'
 gem 'pundit'
 gem 'carrierwave'
 
