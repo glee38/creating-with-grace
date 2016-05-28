@@ -36,6 +36,9 @@ gem 'carrierwave'
 # gem to create wizard forms
 gem 'wicked'
 
+# gem to securely store env variables
+gem "figaro"
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
