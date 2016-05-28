@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :art_media
   resources :profiles
   resources :reviews
   resources :brands
