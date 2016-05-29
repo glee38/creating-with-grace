@@ -213,6 +213,16 @@ p {
   float: left;
   width: 100%;
 }
+
+.container { 
+  border: 1px solid #ccc; 
+  text-align: left;
+  font-size: 15px;
+  width: 14em; 
+  height: 6em; 
+  overflow-y: scroll;
+}
+
 @media screen and (max-width: 1200px) {
   #fh5co-header {
     padding-left: 15px;
@@ -776,5 +786,7 @@ figure figcaption {
     float: none;
   }
 }
+
+
 
 /*# sourceMappingURL=style.css.map */
