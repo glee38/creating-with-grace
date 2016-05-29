@@ -1,1 +1,40 @@
-_form.html.erb
+<%= form_for post do |f| %>
+            
+            <p>
+              <%= f.label :title %><br>
+              <%= f.text_field :title %>
+            </p>
+            
+            <p>
+              <%= f.label :content %><br>
+              <%= f.text_area :content, :cols => "70", :rows => "10" %>
+            </p>
+
+            <p>
+              <%= f.fields_for :art_medium do |art_medium_field| %>
+                <%= art_medium_field.label :name, "Add new medium"%><br>
+                <%= art_medium_field.text_field :name %><br></br>
+              <% end %>
+                Or choose from existing mediums:<br>
+                  <%= f.collection_select :art_medium_id, ArtMedium.all, :id, :name, include_blank: true%>
+            </p>
+
+            <p>
+              <%= f.label :all_categories, "Categories separated with a comma" %><br>
+              <%= f.text_field :all_categories %>
+            </p>
+
+            <p>
+                And/or choose from existing categories:<br>
+                <div class = "container">
+                  <%= f.collection_check_boxes :category_ids, Category.all, :id, :name do |b| %>
+                      <%= b.label { b.check_box + " " + b.text } %><br>
+                  <% end %>
+                </div>
+            </p>
+
+            <p>
+              <%= f.submit "Create Post", class: "btn" %>
+            </p>
+
+          <% end %>

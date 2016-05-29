@@ -2,40 +2,11 @@
       <div class="row fh5co-post-entry single-entry">
       <article class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 col-xs-offset-0">
         <figure class="animate-box">
+
           <h1>New Post</h1>
-          <%= form_for @post do |f| %>
-            
-            <p>
-              <%= f.label :title %><br>
-              <%= f.text_field :title %>
-            </p>
-            
-            <p>
-              <%= f.label :content %><br>
-              <%= f.text_area :content, :cols => "70", :rows => "10" %>
-            </p>
-
-            <p>
-              <%= f.label :art_medium, "Medium" %><br>
-              <%= f.text_field :art_medium %>
-            </p>
-
-            <p>
-              <%= fields_for :category do |category_field| %>
-                <label for="new_category">Create new category</label><br>
-                <%= category_field.text_field :name %><br></br>
-              <% end %>
-                Or choose from existing categories:<br>
-                  <%= collection_check_boxes(:post, :post_category_ids, Category.all, :id, :name) %>
-            </p>
-
-            <p>
-              <%= f.submit %>
-            </p>
-
-          <% end %>
+          <%= render partial: "form", locals: {post: @post} %>
+       
         </figure>
       </article>
     </div>
-  
 </div>
