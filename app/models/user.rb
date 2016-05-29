@@ -22,6 +22,11 @@ class User < ActiveRecord::Base
   # validates_integrity_of  :avatar
   # validates_processing_of :avatar
 
+  accepts_nested_attributes_for :posts,
+  :reject_if => proc {|attributes|
+    attributes.all? {|k,v| v.blank?}
+  }
+
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid, email: auth.info.email).first_or_create do |user|
       user.email = auth.info.email
