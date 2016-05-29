@@ -7,10 +7,12 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new
+    @post.build_art_medium
   end
 
   def create
     @post = Post.new(post_params)
+    raise post_params.inspect
     if @post.save
       flash[:notice] = "Post was successfully created."
       redirect_to post_path(@post)
@@ -38,6 +40,6 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:title, :content, :type)
+    params.require(:post).permit(:title, :content, :art_medium_id, :all_categories, :category_ids => [], art_medium_attributes: [:name])
   end
 end
