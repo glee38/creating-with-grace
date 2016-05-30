@@ -179,5 +179,10 @@ Tables:
 - Bio
 - User_id
 
+** POST_THUMBNAILS **
+- User_id
+- Post_id
+- Thumbnail (carrierwave)
+
 
 
