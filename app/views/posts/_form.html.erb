@@ -11,7 +11,7 @@
             </p>
 
             <p>
-              <%= f.fields_for :art_medium do |art_medium_field| %>
+              <%= f.fields_for @post.build_art_medium do |art_medium_field| %>
                 <%= art_medium_field.label :name, "Add new medium"%><br>
                 <%= art_medium_field.text_field :name, value: nil %><br></br>
               <% end %>
@@ -35,10 +35,10 @@
                 </div>
             </p>
 
-            <p>
+
               <%= f.label :thumbnail, "Upload thumbnail image for post" %>
-              <%= f.file_field :thumbnail %>
-            </p>
+              <%= f.file_field :thumbnail, class: "container file" %>
+     
 
             <p>
               <%= f.submit "Create Post", class: "btn" %>
