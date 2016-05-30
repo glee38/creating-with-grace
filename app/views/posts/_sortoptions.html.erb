@@ -1,0 +1,17 @@
+<p>
+  <script type="text/javascript">
+    function redirectMe (sel) {
+        var url = sel[sel.selectedIndex].value;
+        window.location = url;
+    }
+  </script>
+
+  <select name="sort_options" onchange="redirectMe(this);">
+    <option disabled selected value> -- order posts by -- </option>
+    <option value="categories">Categories</option>
+    <option value="posts/date-asc">Date ASC</option>
+    <option value="posts/date-desc">Date DESC</option>
+    <option value="art_media">Art Media</option>
+    <option value="reviews">Product Reviews</option>
+  </select>
+</p>
