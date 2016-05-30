@@ -11,9 +11,18 @@ class Post < ActiveRecord::Base
 
   accepts_nested_attributes_for :art_medium, reject_if: :all_blank
 
-  def all_categories=(names)
-    self.categories = names.split(",").map do |name|
-        Category.where(name: name.strip).first_or_create!
+  validates_presence_of :name, :content
+
+  def categories_attributes=(hash)
+    hash.each do |i, category_attributes|
+      category_attributes.each do |name, value|
+        value.split(",").map do |v|
+          if v.present?
+            category = Category.find_or_create_by(name: v.strip)
+            self.categories << category
+          end
+        end
+      end
     end
   end
 

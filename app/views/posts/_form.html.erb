@@ -20,12 +20,14 @@
             </p>
 
             <p>
-              <%= f.label :all_categories, "Categories separated with a comma" %><br>
-              <%= f.text_field :all_categories %>
+              <%= f.fields_for :categories do |category_field| %>
+                <%= category_field.label :name, "Categories separated with a comma"%><br>
+                <%= category_field.text_field :name %>
+              <% end %>
             </p>
 
             <p>
-                And/or choose from existing categories:<br>
+                And/or choose from existing categories:
                 <div class = "container">
                   <%= f.collection_check_boxes :category_ids, Category.all, :id, :name do |b| %>
                       <%= b.label { b.check_box + " " + b.text } %><br>
