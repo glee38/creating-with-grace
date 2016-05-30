@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :post_thumbnails
   resources :art_media
   resources :profiles
   resources :reviews

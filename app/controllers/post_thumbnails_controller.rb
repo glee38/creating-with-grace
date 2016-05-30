@@ -1,0 +1,2 @@
+class PostThumbnailsController < ApplicationController
+end
