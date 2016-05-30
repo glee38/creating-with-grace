@@ -9,9 +9,11 @@ class Post < ActiveRecord::Base
   has_many :images
   has_many :image_uploaders, through: :images, :source => :user
 
+  mount_uploader :thumbnail, ThumbnailUploader
+
   accepts_nested_attributes_for :art_medium, reject_if: :all_blank
 
-  validates_presence_of :name, :content
+  validates_presence_of :title, :content
 
   def categories_attributes=(hash)
     hash.each do |i, category_attributes|

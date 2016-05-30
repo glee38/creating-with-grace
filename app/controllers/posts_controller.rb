@@ -8,7 +8,6 @@ class PostsController < ApplicationController
   def new
     @post = Post.new
     @post.build_art_medium
-    @post.categories.build
   end
 
   def create
@@ -40,6 +39,6 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:title, :content, :art_medium_id, :category_ids => [], art_medium_attributes: [:name], categories_attributes: [:name])
+    params.require(:post).permit(:title, :content, :art_medium_id, :thumbnail, :category_ids => [], art_medium_attributes: [:name], categories_attributes: [:name])
   end
 end

@@ -1,2 +1,0 @@
-class PostThumbnailsController < ApplicationController
-end

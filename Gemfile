@@ -31,7 +31,10 @@ gem 'therubyracer'
 gem 'devise'
 gem 'omniauth-facebook'
 gem 'pundit'
+
+# gems to upload images
 gem 'carrierwave'
+gem 'rmagick'
 
 # gem to create wizard forms
 gem 'wicked'
