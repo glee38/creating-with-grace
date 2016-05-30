@@ -21,7 +21,7 @@
 
             <p>
               <%= f.fields_for @post.categories.build do |category_field| %>
-                <%= category_field.label :name, "Categories separated with a comma"%><br>
+                <%= category_field.label :name, "Categories separated with commas"%><br>
                 <%= category_field.text_field :name, value: nil %>
               <% end %>
             </p>

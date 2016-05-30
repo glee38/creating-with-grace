@@ -7,7 +7,6 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new
-    @post.build_art_medium
   end
 
   def create

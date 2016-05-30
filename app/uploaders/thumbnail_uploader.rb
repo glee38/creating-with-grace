@@ -30,6 +30,12 @@ class ThumbnailUploader < CarrierWave::Uploader::Base
   process resize_to_fill: [710, 477]
   process :quality => 100 
 
+  version :thumb do
+    process resize_to_fill: [199, 277]
+    process quality: 100
+  end
+
+
   #
   # def scale(width, height)
   #   # do something
