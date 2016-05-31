@@ -32,4 +32,24 @@ class Post < ActiveRecord::Base
     self.categories.map(&:name).join(", ")
   end
 
+  def pretty_created_at
+    created_at.strftime("%b %dth, %Y")
+  end
+
+  def self.sort_by_date_asc
+    self.select(:title).order(:created_at => :asc)
+  end
+
+  def self.sort_options_array
+    ["Categories", "Date ASC", "Date DESC", "Art Media", "Product Reviews"]
+  end
+
+  def previous_post
+    Post.where(["id < ?", id]).last
+  end
+
+  def next_post
+    Post.where(["id > ?", id]).first
+  end
+
 end

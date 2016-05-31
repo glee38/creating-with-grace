@@ -1,1 +1,16 @@
-index.html.erb
+<div class="container-fluid">
+      <div class="row fh5co-post-entry single-entry">
+      <article class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 col-xs-offset-0">
+        <figure class="animate-box">
+          <h1>All Posts</h1>
+
+          <%= render partial: "sortoptions" %>
+
+          <% @posts.each do |post| %>
+            <%= link_to post.title, post_path(post) %> | <%= post.all_categories %><br>
+          <% end %>
+
+        </figure>
+      </article>
+    </div>
+</div>

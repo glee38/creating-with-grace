@@ -7,6 +7,8 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new
+    @post.categories.build
+    @post.build_art_medium
   end
 
   def create
@@ -26,6 +28,13 @@ class PostsController < ApplicationController
   end
 
   def update
+    @post.update(post_params)
+    if @post.save
+      flash[:notice] = "Post was successfully updated."
+      redirect_to post_path(@post)
+    else
+      render :edit
+    end
   end
 
   def destroy

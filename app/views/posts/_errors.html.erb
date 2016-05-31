@@ -1,11 +1,11 @@
-  <% if post.errors.any? %>
+  <% if @post.errors.any? %>
     <div id="error_explanation">
-      <label><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</label>
+      <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
 
-      <ul class= "errors">
-      <% post.errors.full_messages.each do |msg| %>
+      <ul>
+      <% @post.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
       </ul>
     </div>
-  <% end %> 
+  <% end %>
