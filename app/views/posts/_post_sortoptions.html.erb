@@ -1,0 +1,14 @@
+<p>
+  <script type="text/javascript">
+    function redirectMe (sel) {
+        var url = sel[sel.selectedIndex].value;
+        window.location = url;
+    }
+  </script>
+
+  <select name="sort_options" onchange="redirectMe(this);">
+    <option disabled selected value> -- order posts by -- </option>
+    <option value="date_asc">Date ASC</option>
+    <option value="date_desc">Date DESC</option>
+  </select>
+</p>
