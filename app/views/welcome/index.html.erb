@@ -2,12 +2,19 @@
   <div class="container-fluid">
     <div class="row fh5co-post-entry">
 
-    <% @posts.each_with_index do |post, i| %>
+    <% @posts.reverse.each_with_index do |post, i| %>
       <article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box">
         <figure>
           <%= link_to image_tag(post.thumbnail.thumb.to_s, border: 0), post_path(post), {class: 'img-responsive'} %>
         </figure>
-        <span class="fh5co-meta"><a href="single.html"><%= post.all_categories%></a> | <%= link_to post.art_medium.name, art_medium_path(post.art_medium)%></span>
+
+        <span class="fh5co-meta"> 
+          <% post.categories.each do |category| %>
+            <%= link_to category.name, category_path(category) %>
+            <% unless category == post.categories.last %>, <% end %>
+          <% end %> | <%= link_to post.art_medium.name, art_medium_path(post.art_medium)%>
+        </span>
+
         <h2 class="fh5co-article-title"><%= link_to post.title, post_path(post) %></h2>
         <span class="fh5co-meta fh5co-date"><%= post.pretty_created_at %></span>
       </article>
