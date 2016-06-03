@@ -33,11 +33,15 @@ class Post < ActiveRecord::Base
   end
 
   def pretty_created_at
-    created_at.strftime("%b %dth, %Y")
+    created_at.strftime("%b %d, %Y")
   end
 
   def self.sort_by_date_asc
-    self.select(:title).order(:created_at => :asc)
+    self.select(:title, :id, :created_at).order(:created_at => :asc)
+  end
+
+  def self.sort_by_date_desc
+    self.select(:title, :id, :created_at).order(:created_at => :desc)
   end
 
   def self.sort_options_array
@@ -45,11 +49,11 @@ class Post < ActiveRecord::Base
   end
 
   def previous_post
-    Post.where(["id < ?", id]).last
+    Post.where(["id > ?", id]).first
   end
 
   def next_post
-    Post.where(["id > ?", id]).first
+    Post.where(["id < ?", id]).last
   end
 
 end
