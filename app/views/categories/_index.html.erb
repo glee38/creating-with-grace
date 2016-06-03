@@ -1,0 +1,12 @@
+<% categories.each do |category| %>
+  <p>
+    <label for="category_name"><%= category.name %></label><br>
+    <% if category.posts.any? %>
+      <% category.posts.each do |post| %>
+        <%= link_to post.title, post_path(post) %><br>
+      <% end %>
+    <% else %>
+      No posts yet.
+    <% end %>
+  </p>
+<% end %>

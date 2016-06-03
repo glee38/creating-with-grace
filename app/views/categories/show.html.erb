@@ -1,0 +1,9 @@
+<%= render partial: "posts/divstyle" %>
+
+  <h3>Category | <strong><%= @category.name %></strong></h3>
+  <%= link_to "All Categories", categories_path %>
+  <%= render partial: "show_sortoptions" %>
+
+  <%= render partial: "category_posts", locals: {category: @category} %>
+
+<%= render partial: "posts/enddivstyle" %>

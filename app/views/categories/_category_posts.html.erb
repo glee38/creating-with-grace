@@ -1,0 +1,8 @@
+  <% if category.posts.any? %>
+  <%= pluralize(category.posts.count, "post")%> found: <br>
+    <% category.posts.each do |post| %>
+      <%= link_to post.title, post_path(post)%><br>
+    <% end %>
+  <% else %>
+  There are no posts in this category.
+  <% end %>
