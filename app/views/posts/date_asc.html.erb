@@ -1,0 +1,12 @@
+<%= render partial: "divstyle" %>
+
+  <h3>Posts: Oldest to Newest</h3>  
+  <%= link_to "All Posts", posts_path %>
+
+  <%= render partial: "post_sortoptions" %>
+
+  <% @posts.sort_by_date_asc.each do |post| %>
+    <%= link_to post.title, post_path(post) %> | <%= post.pretty_created_at %><br>
+  <% end %>
+
+<%= render partial: "enddivstyle" %>
