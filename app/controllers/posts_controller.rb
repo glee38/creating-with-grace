@@ -1,8 +1,8 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
-  
+  before_action :set_all_posts, only: [:index, :date_asc, :date_desc]
+
   def index
-    @posts = Post.all
   end
 
   def new
@@ -19,6 +19,12 @@ class PostsController < ApplicationController
     else
       render :new
     end
+  end
+
+  def date_asc
+  end
+
+  def date_desc
   end
 
   def show
@@ -44,6 +50,10 @@ class PostsController < ApplicationController
 
   def set_post
     @post = Post.find(params[:id])
+  end
+
+  def set_all_posts
+    @posts = Post.all
   end
 
   def post_params
