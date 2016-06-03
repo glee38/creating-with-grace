@@ -1,0 +1,8 @@
+  <% if art_medium.posts.any? %>
+    <%= pluralize(art_medium.posts.count, "post")%> found: <br>
+    <% art_medium.posts.each do |post| %>
+      <%= link_to post.title, post_path(post)%><br>
+    <% end %>
+  <% else %>
+  0 posts found.
+  <% end %>

@@ -1,0 +1,14 @@
+<%= render partial: "index_sortoptions" %>
+
+<% art_media.each do |medium| %>
+  <p>
+    <label for="art_medium_name"><%= medium.name %></label><br>
+    <% if medium.posts.any? %>
+      <% medium.posts.each do |post| %>
+        <%= link_to post.title, post_path(post) %><br>
+      <% end %>
+    <% else %>
+      No posts yet.
+    <% end %>
+  </p>
+<% end %>

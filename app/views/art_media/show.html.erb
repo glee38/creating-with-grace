@@ -1,0 +1,9 @@
+<%= render partial: "posts/divstyle" %>
+
+  <h3>Art Medium | <strong><%= @art_medium.name %></strong></h3>
+  <%= link_to "All Art Media", art_media_path %>
+  <%= render partial: "show_sortoptions" %>
+
+  <%= render partial: "art_medium_posts", locals: {art_medium: @art_medium} %>
+
+<%= render partial: "posts/enddivstyle" %>

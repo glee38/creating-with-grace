@@ -1,0 +1,7 @@
+<%= render partial: "posts/divstyle" %>
+
+<h3>Post Art Media</h3>
+<%= link_to "All Posts", posts_path %>
+<%= render partial: "index", locals: {art_media: @art_media} %>
+
+<%= render partial: "posts/enddivstyle" %>

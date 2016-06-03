@@ -1,0 +1,11 @@
+<p>
+  <script type="text/javascript">
+    function redirectMe (sel) {
+        var url = sel[sel.selectedIndex].value;
+        window.location = url;
+    }
+  </script>
+
+<%= select_tag :sort_options, options_from_collection_for_select(ArtMedium.all, :id, :name), :onchange => 'redirectMe(this)', include_blank: "-- choose art medium --" %>
+
+</p>
