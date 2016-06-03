@@ -8,11 +8,18 @@ Rails.application.routes.draw do
   resources :categories
   resources :comments
   resources :registration_steps
+  
+  
   devise_for :users, :controllers => { :registrations => "registrations", :omniauth_callbacks => "omniauth_callbacks" }
-  resources :posts
+  
   root to: 'welcome#index'
 
   get "/single" => "welcome#single"
+
+  get "/posts/date_asc" => "posts#date_asc", as: :date_asc
+  get "/posts/date_desc" => "posts#date_desc", as: :date_desc
+
+  resources :posts
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
