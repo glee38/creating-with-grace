@@ -1,4 +1,4 @@
-<%= render partial: "posts/divstyle" %>
+  <%= render partial: "divstyle" %>
 
   <h3>Category | <strong><%= @category.name %></strong></h3>
   <%= link_to "All Categories", categories_path %>
@@ -6,4 +6,3 @@
 
   <%= render partial: "category_posts", locals: {category: @category} %>
 
-<%= render partial: "posts/enddivstyle" %>
