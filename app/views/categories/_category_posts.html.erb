@@ -1,8 +1,30 @@
   <% if category.posts.any? %>
   <%= pluralize(category.posts.count, "post")%> found: <br>
-    <% category.posts.each do |post| %>
-      <%= link_to post.title, post_path(post)%><br>
+    <%= render partial: "posts/enddivstyle" %>
+<% category.posts.sort_by_date_desc.each_with_index do |post, i| %>
+  <div class="container-fluid">
+    <div class="row fh5co-post-entry">
+      <article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box">
+        <figure>
+          <%= link_to image_tag(post.thumbnail.thumb.to_s, border: 0), post_path(post), {class: 'img-responsive'} %>
+        </figure>
+
+        <span class="fh5co-meta"> 
+          <% post.categories.each do |category| %>
+            <%= link_to category.name, category_path(category) %><% unless category == post.categories.last %>, <% end %>
+          <% end %> | <%= link_to post.art_medium.name, art_medium_path(post.art_medium)%>
+        </span>
+
+        <h2 class="fh5co-article-title"><%= link_to post.title, post_path(post) %></h2>
+        <span class="fh5co-meta fh5co-date"><%= post.pretty_created_at %></span>
+      </article>
+      <% if ((i + 1) % 4 == 0) %>
+        <div class="clearfix visible-lg-block visible-md-block visible-sm-block visible-xs-block"></div>
+      <% end %>
     <% end %>
+      <div class="clearfix visible-xs-block"></div>
+    </div>
+  </div>
   <% else %>
-  There are no posts in this category.
+  0 posts found.
   <% end %>
