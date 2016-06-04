@@ -6,7 +6,6 @@ Rails.application.routes.draw do
   resources :brands
   resources :products
   resources :categories
-  resources :comments
   resources :registration_steps
   
   
@@ -19,7 +18,9 @@ Rails.application.routes.draw do
   get "/posts/date_asc" => "posts#date_asc", as: :date_asc
   get "/posts/date_desc" => "posts#date_desc", as: :date_desc
 
-  resources :posts
+  resources :posts do
+    resources :comments
+  end
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
