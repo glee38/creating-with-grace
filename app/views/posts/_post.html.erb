@@ -1,13 +1,12 @@
 <article class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 col-xs-offset-0">
 
   <figure class="animate-box">
-    <%= image_tag post.thumbnail.large.url.to_s, class: "img-responsive", alt: "Image" %>
+    <%= image_tag post.thumbnail.url.to_s, class: "img-responsive", alt: "Image" %>
   </figure>
 
   <span class="fh5co-meta animate-box">
     <% post.categories.each do |category| %>
-      <%= link_to category.name, category_path(category) %>
-        <% unless category == post.categories.last %>, <% end %>
+      <%= link_to category.name, category_path(category) %><% unless category == post.categories.last %>, <% end %>
       <% end %> | <%= link_to post.art_medium.name, art_medium_path(post.art_medium)%>
     </span>
   
