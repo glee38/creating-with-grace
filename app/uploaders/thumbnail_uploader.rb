@@ -56,6 +56,12 @@ class ThumbnailUploader < CarrierWave::Uploader::Base
     process :unsharp_mask => [0.0, 0.5, 0.5, 0.008]
   end
 
+  version :tiny do
+    process :resize_to_fit => [100, 100]
+    process quality: 100
+    process :unsharp_mask => [0.0, 0.5, 0.5, 0.008]
+  end
+
 
   #
   # def scale(width, height)
