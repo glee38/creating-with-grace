@@ -10,8 +10,7 @@
 
         <span class="fh5co-meta"> 
           <% post.categories.each do |category| %>
-            <%= link_to category.name, category_path(category) %>
-            <% unless category == post.categories.last %>, <% end %>
+            <%= link_to category.name, category_path(category) %><% unless category == post.categories.last %>, <% end %>
           <% end %> | <%= link_to post.art_medium.name, art_medium_path(post.art_medium)%>
         </span>
 
