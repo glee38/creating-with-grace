@@ -11,8 +11,6 @@ class Post < ActiveRecord::Base
 
   mount_uploader :thumbnail, ThumbnailUploader
 
-  accepts_nested_attributes_for :art_medium, reject_if: :all_blank
-
   validates_presence_of :title, :content
 
   def categories_attributes=(hash)
@@ -28,6 +26,15 @@ class Post < ActiveRecord::Base
     end
   end
 
+  def art_medium_attributes=(hash)
+    hash.each do |name, value|
+      if value.present?
+        medium = ArtMedium.find_or_create_by(name: value)
+        self.art_medium = medium
+      end
+    end
+  end
+
   def all_categories
     self.categories.map(&:name).join(", ")
   end
@@ -37,11 +44,11 @@ class Post < ActiveRecord::Base
   end
 
   def self.sort_by_date_asc
-    self.select(:title, :id, :created_at).order(:created_at => :asc)
+    self.select(:title, :id, :art_medium_id, :thumbnail, :created_at).order(:created_at => :asc)
   end
 
   def self.sort_by_date_desc
-    self.select(:title, :id, :created_at).order(:created_at => :desc)
+    self.select(:title, :id, :art_medium_id, :thumbnail, :created_at).order(:created_at => :desc)
   end
 
   def self.sort_options_array
