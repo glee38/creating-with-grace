@@ -7,7 +7,7 @@
   <span class="fh5co-meta animate-box">
     <% post.categories.each do |category| %>
       <%= link_to category.name, category_path(category) %><% unless category == post.categories.last %>, <% end %>
-      <% end %> | <%= link_to post.art_medium.name, art_medium_path(post.art_medium)%>
+      <% end %><% if post.art_medium %> | <%= link_to post.art_medium.name, art_medium_path(post.art_medium)%><% end %>
     </span>
   
   <h2 class="fh5co-article-title animate-box"><%= post.title %></h2>
@@ -24,9 +24,9 @@
       <div class="col-md-12 animate-box fadeInUp animated">
         <%= markdown(post.content) %>
       </div>
-            
     </div>
-          
-          
   </div>
+    
+    <%= render partial: "comments/form", locals: {post: @post} %>
+
 </article>
