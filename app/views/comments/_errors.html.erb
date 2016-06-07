@@ -1,0 +1,11 @@
+  <% if comment.errors.any? %>
+    <div id="error_explanation">
+      <label><%= pluralize(comment.errors.count, "error") %> prohibited this comment from being added:</label>
+
+      <ul class = "errors">
+      <% comment.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
