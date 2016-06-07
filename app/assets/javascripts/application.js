@@ -19,4 +19,3 @@
 //= require magazine/main
 //= require magazine/modernizr-2.6.2.min
 //= require magazine/respond.min
-
