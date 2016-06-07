@@ -4,14 +4,16 @@ class Post < ActiveRecord::Base
   has_many :videos # admin only
   has_many :post_categories
   has_many :categories, through: :post_categories
-  has_many :comments
+  has_many :comments, dependent: :destroy
   has_many :commenters, through: :comments, :source => :user
-  has_many :images
+  has_many :images, dependent: :destroy
   has_many :image_uploaders, through: :images, :source => :user
 
   mount_uploader :thumbnail, ThumbnailUploader
 
   validates_presence_of :title, :content
+
+  accepts_nested_attributes_for :art_medium, allow_destroy: true
 
   def categories_attributes=(hash)
     hash.each do |i, category_attributes|
@@ -27,12 +29,12 @@ class Post < ActiveRecord::Base
   end
 
   def art_medium_attributes=(hash)
-    hash.each do |name, value|
-      if value.present?
-        medium = ArtMedium.find_or_create_by(name: value)
+      if hash[:_destroy] == "1"
+        self.art_medium = nil
+      elsif hash[:name].present?
+        medium = ArtMedium.find_or_create_by(name: hash[:name])
         self.art_medium = medium
       end
-    end
   end
 
   def all_categories
