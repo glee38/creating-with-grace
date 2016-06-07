@@ -1,14 +1,23 @@
 class CommentsController < ApplicationController
   def new
-    @comment = Comment.new
   end
 
   def create
-    @comment = Comment.new(comment_params)
+    @post = Post.find(params[:post_id])
+    @comment = @post.comments.build(comment_params)
+    
+    if @comment.save
+      flash[:notice] = "Comment was successfully added."
+      redirect_to post_path(@post)
+    else
+      flash[:alert] = "Comment could not be added: content cannot be blank."
+      render template: 'posts/show' 
+    end
   end
 
   def destroy
     @comment = Comment.find(params[:id])
+    @comment.destroy
   end
 
   private
