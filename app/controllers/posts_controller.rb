@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
   before_action :set_all_posts, only: [:index, :date_asc, :date_desc]
+  #before_action :more_than_one_medium, only: [:create, :update]
 
   def index
   end
@@ -28,9 +29,13 @@ class PostsController < ApplicationController
   end
 
   def show
+    @comment = Comment.new
   end
 
   def edit
+    if @post.art_medium.nil?
+      @post.build_art_medium
+    end
   end
 
   def update
@@ -57,6 +62,13 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:title, :content, :art_medium_id, :thumbnail, :category_ids => [], art_medium_attributes: [:name], categories_attributes: [:name])
+    params.require(:post).permit(:title, :content, :art_medium_id, :thumbnail, :remove_thumbnail, :category_ids => [], art_medium_attributes: [:name, :_destroy], categories_attributes: [:name])
   end
+
+  # def more_than_one_medium
+  #   if post_params[:art_medium_id] && post_params[:art_medium_attributes][:name]
+  #     flash[:alert] = "Post can only have one medium."
+  #     render :edit
+  #   end
+  # end
 end
