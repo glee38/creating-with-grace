@@ -45,6 +45,9 @@ gem "figaro"
 # gem to implement markdown formatting to posts
 gem 'redcarpet'
 
+# gem to make posts likeable
+gem 'acts_as_votable', '~> 0.10.0'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
