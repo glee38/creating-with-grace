@@ -1,1 +1,26 @@
-_form.html.erb
+<div class="col-lg-12 col-lg-offset-0 col-md-12 col-md-offset-0 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0 text-left content-article">
+    <div class="row">
+
+      <div class="col-md-12 animate-box fadeInUp animated">
+
+        <%= form_for([post, post.comments.build]) do |f| %>
+          
+            <hr>
+
+            <div><small><%= pluralize(post.comments.count, "comment")%></small> | </div><br>
+
+            <% if user_signed_in? %>
+              <small>Signed in as <%= current_user.name %>. Not you? <%= link_to "Sign Out", destroy_user_session_path, :method=>'delete' %></small><br>
+            <% else %>
+              <small>Please <%= link_to "Sign In", new_user_session_path %> or <%= link_to "Sign Up", new_user_registration_path %> to leave a comment.</small><br>
+            <% end %>
+
+            <%= f.text_area :content, id: "text-area" %><br>
+           
+            
+            <%= f.submit "Add comment", class: "btn ajax" %>
+          <% end %>
+
+      </div>  
+    </div>      
+  </div>
