@@ -4,41 +4,51 @@
         <% if post.comments.any? %>
         <ul id= "comment-list" class="comment-list">
           <% post.comments.each do |comment| %>
-          <li class="comment" id= "comment-<%=comment.id%>">
-            <div data-role="comment-content" class="comment-content">
-              <div class="indicator"></div>
-                <div class="avatar hovercard"></div>
-              <div class="comment-body">
-                <header>
-                  <span class= "comment-byline">
-                    <span class="author publisher-anchor-color">
-                      <%= comment.user.name%>
+            <% if comment.persisted? %>
+            <li class="comment" id= "comment-<%=comment.id%>">
+              <div data-role="comment-content" class="comment-content">
+                <div class="indicator"></div>
+                  <div class="avatar hovercard"></div>
+                <div class="comment-body">
+                  <header>
+                    <span class= "comment-byline">
+                      <span class="author publisher-anchor-color">
+                        <%= comment.user.name%>
+                      </span>
                     </span>
-                  </span>
-                  <span class="bullet time-created-bullet" aria-hidden="true">•</span>
-                   <span class="post-meta">
-                     <%= comment.pretty_created_at %>
-                   </span>
-                </header>
-                <div class="comment-body-inner">
-                  <div class="comment-message-container" data-role="message-container">
-                    <div class="publisher-anchor-color" data-role="comment-content">
-                      <div class="comment-message" data-role="message" dir="auto">
-                        <p><%= comment.content %></p>
+                    <span class="bullet time-created-bullet" aria-hidden="true">•</span>
+                     <span class="post-meta">
+                       <%= comment.pretty_created_at %>
+                     </span>
+                  </header>
+                  <div class="comment-body-inner">
+                    <div class="comment-message-container" data-role="message-container">
+                      <div class="publisher-anchor-color" data-role="comment-content">
+                        <div class="comment-message" data-role="message" dir="auto">
+                          <p><%= comment.content %></p>
+                        </div>
                       </div>
                     </div>
                   </div>
+                  <footer>
+                    <menu>
+                      <li>
+                        <span class="text">
+                          <li class="edit">
+                            <%= link_to "Edit", edit_post_comment_path(post, comment) %>
+                          </li>
+                            <li class="bullet" aria-hidden="true">•</li>
+                          <li class="delete">
+                            <%= link_to "Delete",  [post, comment],  method: :delete %>
+                          </li>
+                        </span>
+                      </li>
+                    </menu>
+                  </footer>
                 </div>
-                <footer>
-                  <menu>
-                    <li>
-                      <span class="text"><%= link_to "Edit", edit_post_comment_path(post, comment) %> | <%= link_to "Delete",  [post, comment],  method: :delete %></span>
-                    </li>
-                  </menu>
-                </footer>
               </div>
-            </div>
-          </li>
+            </li>
+            <% end %>
           <% end %>
           </ul>
         <% end %>
