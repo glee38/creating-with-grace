@@ -2,12 +2,17 @@
     <div class="row">
 
       <div class="col-md-12 animate-box fadeInUp animated">
-
-        <%= form_for([post, post.comments.build]) do |f| %>
+        
+        <%= form_for([post, comment]) do |f| %>
           
             <hr>
 
-            <div><small><%= pluralize(post.comments.count, "comment")%></small> | </div><br>
+            <div>
+              <small>
+                <%= pluralize(post.comments.count, "comment")%> | <%= link_to like_post_path(post), class: 'vote', method: :put do %><%= image_tag("heart-icon.png", height: "13", width: "13")%><% end %> <span class="ncount-<%= post.id %>"><%= post.get_upvotes.size %></span> likes
+              </small>
+            </div><br>
+
 
             <% if user_signed_in? %>
               <small>Signed in as <%= current_user.name %>. Not you? <%= link_to "Sign Out", destroy_user_session_path, :method=>'delete' %></small><br>
@@ -20,7 +25,7 @@
             
             <%= f.submit "Add comment", class: "btn ajax" %>
           <% end %>
-
+        
       </div>  
     </div>      
   </div>
