@@ -18,8 +18,13 @@ Rails.application.routes.draw do
   get "/posts/date_asc" => "posts#date_asc", as: :date_asc
   get "/posts/date_desc" => "posts#date_desc", as: :date_desc
 
+  #put "/posts/:id/like" => "posts#upvote", as: :like_post
+
   resources :posts do
     resources :comments
+     member do
+        put "like", to: "posts#upvote", as: :like
+      end
   end
   
   # The priority is based upon order of creation: first created -> highest priority.
