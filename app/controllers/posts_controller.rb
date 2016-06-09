@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :set_post, only: [:show, :edit, :update, :destroy, :upvote]
   before_action :set_all_posts, only: [:index, :date_asc, :date_desc]
   #before_action :more_than_one_medium, only: [:create, :update]
 
@@ -22,13 +22,8 @@ class PostsController < ApplicationController
     end
   end
 
-  def date_asc
-  end
-
-  def date_desc
-  end
-
   def show
+    @comment = Comment.new
   end
 
   def edit
@@ -48,6 +43,17 @@ class PostsController < ApplicationController
   end
 
   def destroy
+  end
+
+  def date_asc
+  end
+
+  def date_desc
+  end
+
+  def upvote
+    @post.upvote_by current_user
+    redirect_to :back
   end
 
   private
