@@ -11,6 +11,7 @@ def create
     if resource.persisted?
       if resource.active_for_authentication?
         sign_up(resource_name, resource)
+        set_flash_message! :notice, :"Successfully authenticated via Facebook! Just one more step to complete sign up."
         respond_with resource, location: registration_steps_path(resource)
       else
         set_flash_message! :notice, :"signed_up_but_#{resource.inactive_message}"
