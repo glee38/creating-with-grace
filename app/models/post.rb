@@ -1,4 +1,6 @@
 class Post < ActiveRecord::Base
+  acts_as_votable
+
   belongs_to :user # admin only
   belongs_to :art_medium
   has_many :videos # admin only
