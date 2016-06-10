@@ -26,7 +26,8 @@
       </div>
     </div>
   </div>
-    
-    <%= render partial: "comments/form", locals: {post: @post} %>
+
+    <%= render partial: "comments/form", locals: {post: @post, comment: @comment} %>
+    <%= render partial: "comments/comment", locals: {post: @post, comment: @comment} %>
 
 </article>
