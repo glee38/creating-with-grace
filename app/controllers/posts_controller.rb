@@ -67,7 +67,7 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:title, :content, :art_medium_id, :thumbnail, :remove_thumbnail, category: [:name], :category_ids => [], categories_attributes: [:name],art_medium_attributes: [:name, :_destroy])
+    params.require(:post).permit(:title, :content, :art_medium_id, :thumbnail, :remove_thumbnail, category: [:name], :category_ids => [], art_medium_attributes: [:name, :_destroy])
   end
 
   # def more_than_one_medium
