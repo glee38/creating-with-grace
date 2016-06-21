@@ -16,20 +16,21 @@ class Post < ActiveRecord::Base
   validates_presence_of :title, :content
 
   accepts_nested_attributes_for :art_medium, allow_destroy: true
-  accepts_nested_attributes_for :categories, allow_destroy: true
 
-  def categories_attributes=(hash)
-    hash.each do |i, category_attributes|
-      category_attributes.each do |name, value|
-        value.split(",").map do |v|
-          if v.present?
-            category = Category.find_or_create_by(name: v.strip)
-            self.categories << category
-          end
-        end
-      end
-    end
-  end
+  # took :categories field out of form builder for posts to prevent multiple category fields from appearing
+
+  # def categories_attributes=(hash)
+  #   hash.each do |i, category_attributes|
+  #     category_attributes.each do |name, value|
+  #       value.split(",").map do |v|
+  #         if v.present?
+  #           category = Category.find_or_create_by(name: v.strip)
+  #           self.categories << category
+  #         end
+  #       end
+  #     end
+  #   end
+  # end
 
   def category=(hash)
     hash.each do |name, value|
