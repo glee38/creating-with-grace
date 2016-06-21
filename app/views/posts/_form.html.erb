@@ -1,57 +1,58 @@
 <%= form_for post, html: {multipart: true} do |f| %>
-            <p>
-              <%= f.label :title %><br>
-              <%= f.text_field :title %>
-            </p>
+  <p>
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+  </p>
             
-            <p>
-              <%= f.label :content %><br>
-              <%= f.text_area :content, :cols => "70", :rows => "10" %>
-            </p>
+  <p>
+    <%= f.label :content %><br>
+    <%= f.text_area :content, :cols => "70", :rows => "10" %>
+  </p>
          
-            <p>
-              <%= f.fields_for :art_medium do |art_medium_field| %>
-                <%= art_medium_field.label :name, "Add new medium"%><br>
-                <%= art_medium_field.text_field :name, value: nil %><br></br>
+  <p>
+    <%= f.fields_for :art_medium do |art_medium_field| %>
+      <%= art_medium_field.label :name, "Add new medium"%><br>
+      <%= art_medium_field.text_field :name, value: nil %><br></br>
 
-                <% if post.art_medium.persisted? %>
-                  <%= art_medium_field.check_box :_destroy %>&nbsp;
-                  <small><%= art_medium_field.label :_destroy, "Remove current medium"%> (<%=post.art_medium.name%>)</small><br></br>
-                <% end %>
-              <% end %>
-                Or choose from existing mediums:<br>
-                  <%= f.collection_select :art_medium_id, ArtMedium.all, :id, :name, include_blank: true%> 
-            </p>
+      <% if post.art_medium.persisted? %>
+        <%= art_medium_field.check_box :_destroy %>&nbsp;
+        <small><%= art_medium_field.label :_destroy, "Remove current medium"%> (<%=post.art_medium.name%>)</small><br></br>
+        <% end %>
+      <% end %>
+
+      Or choose from existing mediums:<br>
+        <%= f.collection_select :art_medium_id, ArtMedium.all, :id, :name, include_blank: true%> 
+    </p>
             
-            <hr>
+    <hr>
 
-            <p>
-              <%= f.fields_for :categories do |category_field| %>
-                <%= category_field.label :name, "Add categories"%> (separated by commas)<br>
-                <%= category_field.text_field :name, value: nil %><br></br>
-              <% end %>
-           
-                And/or choose from existing categories:
-                <div class = "container">
-                  <%= f.collection_check_boxes :category_ids, Category.all, :id, :name do |b| %>
-                      <%= b.label { b.check_box + " " + b.text } %><br>
-                  <% end %>
-                </div>
-            </p>
+    <div class= "field">
+      <%= f.fields_for post.categories.last do |category_field| %>
+        <%= category_field.label :name, "Add new categories"%> <small>(separated by commas)</small><br>
+        <%= category_field.text_field :name, value: nil %><br></br>
+      <% end %>
+    </div>
 
-            <hr>
+    And/or choose from existing categories:
+      <div class = "container">
+        <%= f.collection_check_boxes :category_ids, Category.all, :id, :name do |b| %>
+          <%= b.label { b.check_box + " " + b.text } %><br>
+        <% end %>
+      </div>
 
-              <%= f.label :thumbnail, "Upload thumbnail image for post" %><br>
+      <hr>
 
-              <% if @post.thumbnail.present? %>
-              <p><%= f.check_box :remove_thumbnail %> <small>Remove current thumbnail</small></p>
-              <% end %>
+    <%= f.label :thumbnail, "Upload thumbnail image for post" %><br>
 
-              <%= f.file_field :thumbnail, class: "container file" %>
-                
-        
+    <% if @post.thumbnail.present? %>
+      <p>
+      <%= f.check_box :remove_thumbnail %> <small>Remove current thumbnail</small>
+      </p>
+    <% end %>
 
-            <p>
-              <%= f.submit class: "btn" %>
-            </p>
-          <% end %>
+    <%= f.file_field :thumbnail, class: "container file" %>
+
+  <p>
+    <%= f.submit class: "btn" %>
+  </p>
+<% end %>

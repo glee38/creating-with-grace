@@ -16,6 +16,7 @@ class Post < ActiveRecord::Base
   validates_presence_of :title, :content
 
   accepts_nested_attributes_for :art_medium, allow_destroy: true
+  accepts_nested_attributes_for :categories, allow_destroy: true
 
   def categories_attributes=(hash)
     hash.each do |i, category_attributes|
@@ -25,6 +26,17 @@ class Post < ActiveRecord::Base
             category = Category.find_or_create_by(name: v.strip)
             self.categories << category
           end
+        end
+      end
+    end
+  end
+
+  def category=(hash)
+    hash.each do |name, value|
+      value.split(",").map do |v|
+        if v.present?
+          category = Category.find_or_create_by(name: v.strip)
+          self.categories << category
         end
       end
     end
