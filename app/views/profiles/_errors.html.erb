@@ -1,0 +1,11 @@
+  <% if profile.errors.any? %>
+    <div class="errors">
+      <label><%= pluralize(prfile.errors.count, "error") %> prohibited this post from being saved:</label>
+
+      <ul class>
+      <% profile.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>

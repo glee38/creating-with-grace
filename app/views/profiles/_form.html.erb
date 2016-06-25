@@ -1,0 +1,14 @@
+<%= form_for [@user, @profile], html: {multipart: true} do |f| %>
+
+  <p>
+    <%= f.label :bio %>
+    <%= f.text_area :bio %>
+  </p>
+
+  <p>
+    <%= f.file_field :avatar %>
+  </p>
+
+  <%= f.submit class: "btn" %>
+
+<% end %>
