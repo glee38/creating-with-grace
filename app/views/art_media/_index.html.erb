@@ -1,14 +1,30 @@
-<%= render partial: "index_sortoptions" %>
-
-<% art_media.each do |medium| %>
-  <p>
-    <label for="art_medium_name"><%= medium.name %></label><br>
+<table class = "table post-date">
+   <thead>
+      <tr>
+        <% art_media.each do |medium| %>
+        <% if medium.posts.any? %>
+         <th><%= medium.name %></th>
+         <th>Category</th>
+         <th>Date Posted</th>
+         <% end %>
+      </tr>
+   </thead>
+   
+   <tbody>
     <% if medium.posts.any? %>
-      <% medium.posts.each do |post| %>
-        <%= link_to post.title, post_path(post) %><br>
-      <% end %>
-    <% else %>
-      No posts yet.
+      <% medium.posts.reverse.each do |post| %> 
+      <tr>
+         <td><%= link_to post.title, post_path(post) %></td>
+         <% if post.categories %>
+         <td><%= post.all_categories %></td>
+         <% else %>
+         <td>No categories specified</td>
+         <% end %>
+         <td><%= post.pretty_created_at %></td>
+      </tr>
     <% end %>
-  </p>
-<% end %>
+
+    <% end %>
+   </tbody>
+  <% end %>
+</table>
