@@ -2839,7 +2839,9 @@ caption {
 }
 
 th {
-  text-align: left;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: normal;
 }
 
 .table {
@@ -2857,10 +2859,14 @@ th {
   line-height: 1.42857;
   vertical-align: top;
   border-top: 1px solid #ddd;
+  text-align: center;
+  font-size: 85%;
 }
 .table > thead > tr > th {
   vertical-align: bottom;
   border-bottom: 2px solid #ddd;
+  text-align: center;
+  font-size: 85%;
 }
 .table > caption + thead > tr:first-child > th,
 .table > caption + thead > tr:first-child > td,
@@ -2921,6 +2927,10 @@ table th[class*="col-"] {
   position: static;
   float: none;
   display: table-cell;
+}
+
+table.post-date td + td + td {
+  color: #999999;
 }
 
 .table > thead > tr > td.active,
