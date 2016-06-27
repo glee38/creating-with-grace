@@ -11,13 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160622184442) do
+ActiveRecord::Schema.define(version: 20160627211157) do
 
   create_table "art_media", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "slug"
   end
+
+  add_index "art_media", ["slug"], name: "index_art_media_on_slug"
 
   create_table "brands", force: :cascade do |t|
     t.string   "name"
