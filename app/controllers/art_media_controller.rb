@@ -12,7 +12,7 @@ class ArtMediaController < ApplicationController
   private
 
   def set_art_medium
-    @art_medium = ArtMedium.find(params[:id])
+    @art_medium = ArtMedium.find_by_slug(params[:id])
   end
 
 end
