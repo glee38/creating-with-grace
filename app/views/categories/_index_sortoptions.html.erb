@@ -6,6 +6,6 @@
     }
   </script>
 
-<%= select_tag :sort_options, options_from_collection_for_select(Category.all, :id, :name), :onchange => 'redirectMe(this)', include_blank: "-- choose category --" %>
+<%= select_tag :sort_options, options_from_collection_for_select(Category.all, :slug, :name), :onchange => 'redirectMe(this)', include_blank: "-- choose category --" %>
 
 </p>
