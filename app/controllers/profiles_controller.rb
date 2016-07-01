@@ -1,5 +1,6 @@
 class ProfilesController < ApplicationController
   before_action :set_profile, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   def index  
   end
@@ -17,6 +18,13 @@ class ProfilesController < ApplicationController
   end
 
   def update
+    @profile.update(profile_params)
+    if @profile.save
+      flash[:notice] = "Profile was successfully updated."
+      redirect_to profile_path(@profile)
+    else
+      render :edit
+    end
   end
 
   def destroy
@@ -25,9 +33,14 @@ class ProfilesController < ApplicationController
   private
 
   def profile_params
-    params.require(:profile).permit(:avatar. :bio)
+    params.require(:profile).permit(:avatar, :bio)
+  end
 
   def set_profile
-    @profile = current_user.profile
+    @profile = Profile.find_by_slug(params[:id])
+  end
+
+  def set_user
+    @user = @profile.user
   end
 end
