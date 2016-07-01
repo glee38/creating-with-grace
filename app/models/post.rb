@@ -1,6 +1,6 @@
 class Post < ActiveRecord::Base
   extend FriendlyId
-  friendly_id :title, use: [:slugged, :history]
+  friendly_id :title, use: :slugged
 
   acts_as_votable
 
@@ -64,11 +64,11 @@ class Post < ActiveRecord::Base
   end
 
   def self.sort_by_date_asc
-    self.select(:title, :id, :art_medium_id, :thumbnail, :created_at).order(:created_at => :asc)
+    self.select(:title, :id, :art_medium_id, :thumbnail, :created_at, :slug).order(:created_at => :asc)
   end
 
   def self.sort_by_date_desc
-    self.select(:title, :id, :art_medium_id, :thumbnail, :created_at).order(:created_at => :desc)
+    self.select(:title, :id, :art_medium_id, :thumbnail, :created_at, :slug).order(:created_at => :desc)
   end
 
   def self.sort_options_array
