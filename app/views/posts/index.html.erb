@@ -4,8 +4,28 @@
 
           <%= render partial: "index_sortoptions" %>
 
-          <% @posts.each do |post| %>
-            <%= link_to post.title, post_path(post) %> | <%= post.all_categories %><br>
-          <% end %>
+<table class = "table post-date">
+   
+   <thead>
+      <tr>
+         <th>Title</th>
+         <th>Category</th>
+         <th>Date Posted</th>
+      </tr>
+   </thead>
+   
+   <tbody>
+    <% @posts.reverse.each do |post| %>   
+      <tr>
+         <td><%= link_to post.title, post_path(post) %></td>
+         <td><%= post.all_categories %></td>
+         <td><%= post.pretty_created_at %></td>
+      </tr>
+    <% end %>
+   </tbody>
+  
+</table>
+
+          
 
 <%= render partial: "enddivstyle" %>
