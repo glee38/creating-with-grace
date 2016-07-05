@@ -1,7 +1,16 @@
 class User < ActiveRecord::Base
+  extend FriendlyId
+  friendly_id :username, use: :slugged
+
   acts_as_voter
+
+  validates_format_of :username, with: /\A[a-zA-Z0-9._]+\Z/, :allow_blank => true
+  validates :name, :username, presence: true, if: :active?
   
-  # mount_uploader :avatar, AvatarUploader # add this in later
+  mount_uploader :avatar, AvatarUploader
+  # validates_presence_of   :avatar
+  # validates_integrity_of  :avatar
+  # validates_processing_of :avatar
 
   devise :database_authenticatable, :registerable,
          :recoverable, :trackable, :validatable, :omniauthable
@@ -17,12 +26,7 @@ class User < ActiveRecord::Base
   has_many :reviewed_products, through: :reviews, :source => :product
   has_many :videos # admin only
   has_many :uploaded_images, :source => :image
-  has_one :profile # member only
-
-  mount_uploader :avatar, AvatarUploader
-  # validates_presence_of   :avatar
-  # validates_integrity_of  :avatar
-  # validates_processing_of :avatar
+  has_one :profile, dependent: :destroy # member only
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid, email: auth.info.email).first_or_create do |user|
@@ -45,6 +49,10 @@ class User < ActiveRecord::Base
 
   def password_required?
     super && provider.blank?
+  end
+
+  def active?
+    status == 'active'
   end
 
   private
