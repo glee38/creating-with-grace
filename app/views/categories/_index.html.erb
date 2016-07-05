@@ -1,12 +1,32 @@
-<% categories.each do |category| %>
-  <p>
-    <label for="category_name"><%= category.name %></label><br>
+
+
+<table class = "table post-date">
+   <thead>
+      <tr>
+        <% categories.each do |category| %>
+        <% if category.posts.any? %>
+         <th><%= category.name %></th>
+         <th>Art Medium</th>
+         <th>Date Posted</th>
+         <% end %>
+      </tr>
+   </thead>
+   
+   <tbody>
     <% if category.posts.any? %>
-      <% category.posts.each do |post| %>
-        <%= link_to post.title, post_path(post) %><br>
-      <% end %>
-    <% else %>
-      No posts yet.
+      <% category.posts.each do |post| %> 
+      <tr>
+         <td><%= link_to post.title, post_path(post) %></td>
+         <% if post.art_medium %>
+         <td><%= post.art_medium.name %></td>
+         <% else %>
+         <td>No medium specified</td>
+         <% end %>
+         <td><%= post.pretty_created_at %></td>
+      </tr>
     <% end %>
-  </p>
-<% end %>
+
+    <% end %>
+   </tbody>
+  <% end %>
+</table>
