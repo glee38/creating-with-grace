@@ -16,13 +16,15 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav" >
-
-        <li><%= link_to user_profile_path(current_user, current_user.profile) do %>
+        
+        <% if current_user.profile %>
+        <li><%= link_to profile_path(current_user.profile.slug) do %>
           <i class="fa fa-user" aria-hidden="true"></i> &nbsp;Your Profile<% end %>
         </li>
-        <li><%= link_to user_profile_path(current_user, current_user.profile) do %>
+        <li><%= link_to profile_path(current_user.slug) do %>
           <i class="fa fa-pencil-square-o" aria-hidden="true"></i> &nbsp;Your Reviews<% end %>
         </li>
+        <% end %>
 
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">More &nbsp;<i class="fa fa-caret-down" aria-hidden="true"></i></i></a>
