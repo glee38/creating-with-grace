@@ -23,6 +23,8 @@
   </head>
   <% if user_signed_in? && current_user.admin? %>
     <%= render "layouts/adminnav" %>
+  <% elsif user_signed_in? && current_user.member? %>
+    <%= render "layouts/membernav" %>
   <% end %>
   <%= render "layouts/messages" %>
   <%= render "layouts/sidenav" %>
@@ -30,7 +32,7 @@
     <div class="container-fluid">
       <div class="row">
         <a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle"><i></i></a>
-        <ul class="fh5co-social">
+        <ul class="fh5co-social tiny">
           <% if user_signed_in? %>
             <small>Signed in as <%= current_user.name%></small> | 
             <small><%= link_to "SIGN OUT", destroy_user_session_path, :method=>'delete' %></small>
