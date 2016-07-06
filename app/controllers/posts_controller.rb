@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy, :upvote]
   before_action :set_all_posts, only: [:index, :date_asc, :date_desc]
+  before_action :authorize_post, only: [:edit, :update, :destroy]
   #before_action :more_than_one_medium, only: [:create, :update]
 
   def index
@@ -8,6 +9,7 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new
+    authorize @post
     @post.categories.build
     @post.build_art_medium
   end
@@ -15,7 +17,7 @@ class PostsController < ApplicationController
   def create
     @post = current_user.posts.build(post_params)
     @post.categories.build
-    
+
     if @post.save
       flash[:notice] = "Post was successfully created."
       redirect_to post_path(@post)
@@ -44,7 +46,10 @@ class PostsController < ApplicationController
     end
   end
 
-  def destroy
+   def destroy 
+    @post.destroy
+    flash[:notice] = "Post was successfully deleted."
+    redirect_to posts_path
   end
 
   def date_asc
@@ -70,6 +75,10 @@ class PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:title, :content, :art_medium_id, :thumbnail, :remove_thumbnail, category: [:name], :category_ids => [], art_medium_attributes: [:name, :_destroy])
+  end
+
+  def authorize_post
+    authorize @post
   end
 
   # def more_than_one_medium
