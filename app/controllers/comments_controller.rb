@@ -1,10 +1,14 @@
 class CommentsController < ApplicationController
   before_action :set_post, only: [:create, :edit, :update, :destroy]
+  before_action :set_comment, only: [:edit, :update, :destroy]
+  before_action :authorize_comment, only: [:edit, :update, :destroy]
+
   def new
   end
 
   def create
     @comment = @post.comments.build(comment_params)
+    authorize @comment
     @comment.commenter = current_user
     if @comment.save
       flash[:notice] = "Comment was successfully added."
@@ -22,7 +26,6 @@ class CommentsController < ApplicationController
   end
 
   def destroy 
-    @comment = Comment.find(params[:id])
     @comment.destroy
 
     flash[:notice] = "Comment was successfully deleted."
@@ -35,8 +38,16 @@ class CommentsController < ApplicationController
     params.require(:comment).permit(:content)
   end
 
+  def set_comment
+    @comment = Comment.find(params[:id])
+  end
+
   def set_post
-    @post = Post.find(params[:post_id])
+    @post = Post.find_by_slug(params[:post_id])
+  end
+
+  def authorize_comment
+    authorize @comment
   end
 
 end
