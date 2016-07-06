@@ -1,7 +1,21 @@
+
+
 <div class="container-fluid">
       <div class="row fh5co-post-entry single-entry">
       <article class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 col-xs-offset-0">
         <figure class="animate-box">
+            <% if @user.errors.any? %>
+              <div class="errors">
+                <label><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</label>
+
+                <ul class>
+                <% @user.errors.full_messages.each do |msg| %>
+                  <li><%= msg %></li>
+                <% end %>
+                </ul>
+              </div>
+            <% end %>
+  
           <h2>Sign Up</h2>
           <%= form_for @user, url: wizard_path do |f| %>
           <div class="field">
@@ -14,6 +28,7 @@
             <em>(6 characters min)</em><br>
             <%= f.text_field :username %></p>
           </div>
+          
             <%= f.submit "Submit", class: "btn"%>
           <% end %> 
         </figure>
