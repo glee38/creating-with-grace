@@ -22,6 +22,8 @@
           <% Category.all.each do |category| %>
             <li><%= link_to category.name, category_path(category) %></li>
           <% end %>
+          <hr>
+          <li><%= link_to "VIEW ALL POSTS", posts_path, class: "small-light" %></li>
         </ul>
       </div>
       <div class="fh5co-box">
