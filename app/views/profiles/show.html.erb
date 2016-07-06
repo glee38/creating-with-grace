@@ -1,5 +1,23 @@
 <%= render 'posts/divstyle' %>
 
-show.html.erb
+  <div class="profile-avatar">
+    <% if @user.profile.avatar.present? %>
+      <figure>
+      <%= image_tag @profile.avatar.thumb, class: "img-responsive", alt: "Image" %>
+      </figure>
+    <% end %>
+
+    
+      Name: <%= @user.name %><br>
+      Username: <%= @user.username %><br>
+</div>
+
+<% if user_signed_in? %>
+
+<small><%= link_to "Edit Profile", edit_profile_path(@profile) %></small>
+
+
+
+<% end %>
 
 <%= render 'posts/enddivstyle' %>
