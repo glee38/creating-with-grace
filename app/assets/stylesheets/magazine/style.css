@@ -81,6 +81,15 @@ ul, menu, dir {
     float: left;
 }
 
+.profile-avatar img {
+  width: 180px;
+  margin: 0 auto;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  border-radius: 50%;
+}
+
 .avatar img {
     width: 48px;
     height: 48px;
@@ -222,9 +231,17 @@ ul, menu, dir {
 }
 
 .errors {
+  margin-bottom: 2em;
+}
+
+.errors ul {
+  padding: 0;
+}
+
+.errors li {
   padding: 0;
   list-style-type: none;
-  width: 400px;
+  text-align: center;
 }
 
 .btn {
@@ -737,6 +754,10 @@ ul, menu, dir {
   color: #000;
 }
 
+.tiny {
+  font-size: 85%;
+}
+
 figure figcaption {
   padding-top: 15px;
   font-size: 14px;
@@ -858,6 +879,11 @@ figure figcaption {
 }
 #fh5co-offcanvas .fh5co-menu ul li a {
   color: #000;
+}
+
+#fh5co-offcanvas .fh5co-menu ul li a.small-light {
+  font-size: .7em;
+  color: #999999;
 }
 
 #fh5co-footer {
