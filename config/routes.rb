@@ -1,12 +1,14 @@
 Rails.application.routes.draw do
   resources :post_thumbnails
   resources :art_media
-  resources :profiles
   resources :reviews
   resources :brands
   resources :products
   resources :categories
   resources :registration_steps
+  resources :profiles
+
+  get "/registration_steps/personal" => "registration_steps#show", as: :registration_steps_personal
   
   
   devise_for :users, :controllers => { :registrations => "registrations", :omniauth_callbacks => "omniauth_callbacks" }
@@ -25,6 +27,10 @@ Rails.application.routes.draw do
      member do
         put "like", to: "posts#upvote", as: :like
       end
+  end
+
+  resources :users do
+    resources :reviews
   end
   
   # The priority is based upon order of creation: first created -> highest priority.
