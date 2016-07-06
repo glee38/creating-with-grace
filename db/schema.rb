@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160627211157) do
+ActiveRecord::Schema.define(version: 20160701191814) do
 
   create_table "art_media", force: :cascade do |t|
     t.string   "name"
@@ -94,7 +94,11 @@ ActiveRecord::Schema.define(version: 20160627211157) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string   "avatar"
+    t.string   "username"
+    t.string   "slug"
   end
+
+  add_index "profiles", ["slug"], name: "index_profiles_on_slug"
 
   create_table "related_images", force: :cascade do |t|
     t.string   "image"
@@ -132,10 +136,13 @@ ActiveRecord::Schema.define(version: 20160627211157) do
     t.integer  "role"
     t.string   "provider"
     t.string   "uid"
+    t.string   "slug"
+    t.string   "status"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["slug"], name: "index_users_on_slug"
   add_index "users", ["username"], name: "index_users_on_username", unique: true
 
   create_table "votes", force: :cascade do |t|
