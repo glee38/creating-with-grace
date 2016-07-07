@@ -12,10 +12,13 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.purr
 //= require magazine/bootstrap.min
 //= require magazine/jquery.easing.1.3
 //= require magazine/jquery.min
 //= require magazine/jquery.waypoints.min
 //= require magazine/main
 //= require magazine/modernizr-2.6.2.min
+//= require best_in_place
 //= require_tree .
+
