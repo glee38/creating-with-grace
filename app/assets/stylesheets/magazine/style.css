@@ -200,6 +200,12 @@ ul, menu, dir {
     margin: 0 0 15px;
 }
 
+.comment-content .comment-message p textarea {
+    line-height: 21px;
+    margin: 0 0 15px;
+    width: 100%;
+}
+
 .comment-content footer {
     color: #768187;
     color: rgba(29,47,58,.6);
