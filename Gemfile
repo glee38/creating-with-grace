@@ -51,6 +51,9 @@ gem 'acts_as_votable', '~> 0.10.0'
 # gem to make urls more readable
 gem 'friendly_id'
 
+# gem for in-place editing
+gem 'best_in_place'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
