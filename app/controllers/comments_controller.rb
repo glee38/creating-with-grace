@@ -23,6 +23,13 @@ class CommentsController < ApplicationController
   end
 
   def update
+    if @comment.update(comment_params)
+      flash[:notice] = "Comment was successfully updated."
+      redirect_to post_path(@post)
+    else
+      flash[:alert] = "Comment could not be updated: Content cannot be blank."
+      render template: 'posts/show'
+    end
   end
 
   def destroy 
