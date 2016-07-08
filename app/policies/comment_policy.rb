@@ -5,7 +5,7 @@ class CommentPolicy < ApplicationPolicy
   end
 
   def create?
-    allowed_roles
+    allowed_roles || user.persisted?
   end
 
   def destroy?
