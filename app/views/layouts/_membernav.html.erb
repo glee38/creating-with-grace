@@ -40,9 +40,11 @@
         </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><i class="fa fa-user" aria-hidden="true"></i> Users</a></li>
+        <li><%= link_to members_path do %>
+          <i class="fa fa-user" aria-hidden="true"></i> &nbsp;Members<% end %>
+        </li>
         <li class="dropdown clean">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Users Posts <i class="ion-ios-arrow-down"></i></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Member Reviews <i class="ion-ios-arrow-down"></i></a>
           <ul class="dropdown-menu" role="menu">
             <li><a href="#">Action</a></li>
             <li><a href="#">Another action</a></li>
