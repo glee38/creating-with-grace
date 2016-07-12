@@ -1,6 +1,7 @@
 class ProfilesController < ApplicationController
   before_action :set_profile, only: [:show, :edit, :update, :destroy]
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :authorize_profile, only: [:create, :edit, :update, :destroy]
 
   def index  
   end
@@ -9,6 +10,8 @@ class ProfilesController < ApplicationController
   end
 
   def new
+    @profile = Profile.new
+    authorize @profile
   end
 
   def create
@@ -43,4 +46,9 @@ class ProfilesController < ApplicationController
   def set_user
     @user = @profile.user
   end
+
+  def authorize_profile
+    authorize @profile
+  end
+
 end
