@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   
   
   devise_for :users, :controllers => { :registrations => "registrations", :omniauth_callbacks => "omniauth_callbacks" }
+
+  get "/members" => "users#index", as: :members
   
   root to: 'welcome#index'
 
