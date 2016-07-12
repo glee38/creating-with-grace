@@ -5,6 +5,9 @@ class PostsController < ApplicationController
   #before_action :more_than_one_medium, only: [:create, :update]
 
   def index
+    if params[:search]
+      @posts = Post.search(params[:search]).order("created_at DESC")
+    end
   end
 
   def new
