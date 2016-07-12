@@ -28,10 +28,13 @@
       </div>
       <div class="fh5co-box">
         <h3 class="heading">Search</h3>
-        <form action="#">
+        <form action="/posts">
           <div class="form-group">
-            <input type="text" class="form-control" placeholder="Type a keyword">
+            <%= form_tag(posts_path, :method => "get", id: "search-form") do %>
+              <%= text_field_tag :search, params[:search], placeholder: "Search Posts" %>
+            <% end %>
           </div>
+        
         </form>
       </div>
     </div>
