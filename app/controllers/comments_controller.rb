@@ -2,14 +2,18 @@ class CommentsController < ApplicationController
   before_action :set_post, only: [:create, :edit, :update, :destroy]
   before_action :set_comment, only: [:edit, :update, :destroy]
   before_action :authorize_comment, only: [:edit, :update, :destroy]
+  respond_to :html, :json
 
   def new
+    @comment = Comment.new
+    authorize @comment
   end
 
   def create
     @comment = @post.comments.build(comment_params)
     authorize @comment
     @comment.commenter = current_user
+    
     if @comment.save
       flash[:notice] = "Comment was successfully added."
       redirect_to post_path(@post)
