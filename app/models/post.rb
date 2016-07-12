@@ -83,4 +83,10 @@ class Post < ActiveRecord::Base
     Post.where(["id < ?", id]).last
   end
 
+  def self.search(search)
+    joins(:art_medium).where("name LIKE ?","%#{search}%")
+    # where("title LIKE ?", "%#{search}%").
+    # where("content LIKE ?", "%#{search}%")
+  end
+
 end
