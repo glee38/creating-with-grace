@@ -1,11 +1,11 @@
 class CommentPolicy < ApplicationPolicy
 
   def update?
-    allowed_roles
+    member_allowed
   end
 
   def edit?
-    allowed_roles
+    member_allowed
   end
 
   def new?
@@ -17,7 +17,7 @@ class CommentPolicy < ApplicationPolicy
   end
 
   def destroy?
-    allowed_roles
+    member_allowed
   end
 
   private
@@ -27,7 +27,7 @@ class CommentPolicy < ApplicationPolicy
   end
 
   def member_allowed
-    allowed_roles || record.try(:user) == user
+    allowed_roles || record.try(:commenter) == user
   end
 
 end
