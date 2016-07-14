@@ -18,13 +18,12 @@
       <ul class="nav navbar-nav" >
         
         <% if current_user.profile %>
-        <li><%= link_to profile_path(current_user.profile.slug) do %>
-          <i class="fa fa-user" aria-hidden="true"></i> &nbsp;Your Profile<% end %>
-        </li>
-        <li><%= link_to profile_path(current_user.slug) do %>
-          <i class="fa fa-pencil-square-o" aria-hidden="true"></i> &nbsp;Your Reviews<% end %>
-        </li>
+        <li><%= link_to "Your Profile", profile_path(current_user.profile.slug) %></li>
+        <li><%= link_to "Your Reviews", profile_path(current_user.slug) %></li>
         <% end %>
+
+        <li><%= link_to "Community", members_path %>
+        </li>
 
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">More &nbsp;<i class="fa fa-caret-down" aria-hidden="true"></i></i></a>
@@ -39,21 +38,14 @@
           </ul>
         </li>
       </ul>
+
       <ul class="nav navbar-nav navbar-right">
-        <li><%= link_to members_path do %>
-          <i class="fa fa-user" aria-hidden="true"></i> &nbsp;Members<% end %>
-        </li>
-        <li class="dropdown clean">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Member Reviews <i class="ion-ios-arrow-down"></i></a>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li class="divider"></li>
-            <li><a href="#">Separated link</a></li>
-          </ul>
-        </li>
+          <% if user_signed_in? %>
+            Signed in as <%= current_user.name%> | 
+            <%= link_to "SIGN OUT", destroy_user_session_path, :method=>'delete' %>
+          <% end %>
       </ul>
+
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
