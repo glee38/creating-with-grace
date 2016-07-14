@@ -8,6 +8,14 @@
       <h2>Grace Lee</h2>
       <p>Artist & Web Developer.</p>
 
+      <% if user_signed_in? %>
+        <small>Signed in as <%= current_user.name%> | 
+        <%= link_to "Sign Out", destroy_user_session_path, :method=>'delete' %></small><br>
+      <% else %>
+        <small><%= link_to "SIGN UP", new_user_registration_path %> |    
+        <%= link_to "SIGN IN", new_user_session_path %></small><br>
+      <% end %>
+
       <ul class="fh5co-social">
         <li><a href="#"><i class="icon-twitter"></i></a></li>
         <li><a href="#"><i class="icon-facebook"></i></a></li>
